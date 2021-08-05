@@ -1,0 +1,24 @@
+#!/usr/bin/python3
+import os
+import sys
+from rich import print
+sys.path.append(os.environ.get('VIRTUAL_ENV'))
+from setup import Installer
+
+help_msg ="""
+[bold]USAGE:[/bold]
+  HackerMode <command>
+  
+[bold]COMMANDS:[/bold]
+ update
+ upgrade
+ check
+"""[1:]
+
+try:
+    Installer.__getattribute__(sys.argv[1])()
+except IndexError:
+    print(help_msg)
+except AttributeError:
+    print(help_msg)
+
